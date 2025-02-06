@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MyDayIcon,ImportantIcon, Planned, TasksIcon, MenuIcon} from "./Icons";
 import ZenListLogo from '../assets/ZenListLogo.svg'  
 import axios from "axios";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export function Dashboard(){
     const [todo, setTodo] = useState([]);
@@ -10,7 +11,7 @@ export function Dashboard(){
 
     useEffect(()=>{
         async function fetchTodos() {
-            const response = await axios.get("http://localhost:3000/todos",{
+            const response = await axios.get(`${BACKEND_URL}/todos`,{
                 headers:{
                     "Authorization" : localStorage.getItem("token")
                 }
@@ -30,7 +31,7 @@ export function Dashboard(){
             return;
         }else {
             try {
-                const response = await axios.post("http://localhost:3000/addtodo",{
+                const response = await axios.post(`${BACKEND_URL}/addtodo`,{
                 title :  inputRef.current.value
             },{
                 headers:{
@@ -49,7 +50,7 @@ export function Dashboard(){
     const deleteTodo = async (todoToDelete) => {
         const newtodo = todo.filter(item => item._id !== todoToDelete) 
         setTodo(newtodo); 
-        const response = await axios.delete("http://localhost:3000/deletetodo",{
+        const response = await axios.delete(`${BACKEND_URL}/deletetodo`,{
             data: {_id : todoToDelete},
             headers:{
                 "Authorization" : localStorage.getItem("token")
