@@ -1,6 +1,8 @@
 import { forwardRef, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 export function Signup(){
 
@@ -28,7 +30,7 @@ export function Signup(){
             const email = emailRef.current.value;
             const password = passwordRef.current.value;  
             
-            const response = await axios.post("http://localhost:3000/signup",{
+            const response = await axios.post(`${BACKEND_URL}/signin`,{
                 username,
                 email,
                 password
