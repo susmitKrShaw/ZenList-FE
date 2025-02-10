@@ -73,11 +73,11 @@ export function Signup(){
             <div className="pl-[20vw] pr-[20vw] flex">
                 <div className="w-[30vw] h-[70vh] bg-orange-500 flex items-center border-l shadow-lg rounded-s-xl">
                     <div className="text-white flex justify-center">
-                        <div className="pl-6">
+                        <div className="pl-8">
                         <div className="mr-2 pl-6 mb-1">
-                            <span className="text-4xl pr-2">Welcome</span><span className="2xl pr-1">To </span><span className="text-4xl">ZenList</span>
+                            <span className="text-5xl pr-2">Welcome</span><span className="3xl pr-1">To </span><span className="text-5xl">ZenList</span>
                         </div>
-                        <div className="text-sm flex justify-center">
+                        <div className="text-lg flex justify-center">
                         A minimal and mindful approach to task management
                         </div>
                         </div>

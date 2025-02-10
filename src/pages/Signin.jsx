@@ -78,13 +78,13 @@ export function Signin(){
             <div className="pl-[20vw] pr-[20vw] flex">
                 <div className="w-[30vw] h-[70vh] bg-orange-500 flex items-center border-l shadow-lg rounded-s-xl">
                     <div className="text-white flex justify-center">
-                        <div className="pl-6">
-                        <div className="mr-2 pl-6 mb-1 flex justify-center">
-                            <div className="text-4xl">
+                        <div className="pl-8">
+                        <div className="mr-2 pr-1 mb-1 flex justify-center">
+                            <div className="text-5xl">
                             Welcome Back
                             </div>
                         </div>
-                        <div className="text-sm flex justify-center">
+                        <div className="text-lg flex justify-center">
                         To access your tasks, please login with you credentials
                         </div>
                         </div>
