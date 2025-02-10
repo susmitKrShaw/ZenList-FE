@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MyDayIcon,ImportantIcon, Planned, TasksIcon, MenuIcon} from "./Icons";
 import ZenListLogo from '../assets/ZenListLogo.svg'  
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export function Dashboard(){
@@ -9,8 +10,14 @@ export function Dashboard(){
     const [username, setUsername] = useState("");
     const [toggle, setToggle] = useState(false);
     const inputRef = useRef();
+    const navigate = useNavigate();
 
     useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if(!token){
+            alert("You are not signed in...Please Sign In!")
+            navigate("/signin");
+        }
         async function fetchTodos() {
             const response = await axios.get(`${BACKEND_URL}/todos`,{
                 headers:{
@@ -56,9 +63,14 @@ export function Dashboard(){
             headers:{
                 "Authorization" : localStorage.getItem("token")
             }
-        })
-         
+        }) 
         }
+
+    const signOut = async() => {
+        localStorage.removeItem("token");
+        navigate("/signin");
+        
+    }    
      
     const onKeyPress = (event) => {
         if(event.key === "Enter"){
@@ -73,9 +85,14 @@ export function Dashboard(){
 
     return(
     <div>
-        <div className="w-full h-14 bg-orange-500 text-white text-2xl flex items-center pl-10">
-        <img src={ZenListLogo} alt="ZenList Logo" className="h-12"/>
-        ZenList
+        <div className="w-full h-14 bg-orange-500 text-white text-2xl flex items-center justify-between pl-10">
+            <div className="flex items-center">
+            <img src={ZenListLogo} alt="ZenList Logo" className="h-12"/>
+            ZenList
+            </div>
+            <div className="mr-8 mb-2">
+            <button onClick={signOut} className="bg-white px-4 py-1 rounded-xl text-black mt-2 text-xl transition-all hover:py-2">Sign Out</button>
+            </div>
         </div> 
         <div className="flex">
             {/*SideBar*/}
